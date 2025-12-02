@@ -4,9 +4,9 @@ import "fmt"
 
 
 type Student struct {
-	ime     string
-	priimek string
-	ocene   []int
+	Ime     string
+	Priimek string
+	Ocene   []int
 }
 
 func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int) {
@@ -19,7 +19,7 @@ func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int) {
 		fmt.Println("Neveljavna ocena. Ocena mora biti med 0 in 10.")
 		return
 	}
-	student.ocene = append(student.ocene, ocena)
+	student.Ocene = append(student.Ocene, ocena)
 	studenti[vpisnaStevilka] = student
 }
 
@@ -28,13 +28,13 @@ func povprecje(studenti map[string]Student, vpisnaStevilka string) float64 {
 	if !ok {
 		return -1.0
 	}
-	if len(student.ocene) < 6 {
+	if len(student.Ocene) < 6 {
 		return 0.0
 	}
 	var povprecje float64 = 0
-	var velikost int = len(student.ocene)
+	var velikost int = len(student.Ocene)
 	for i := 0; i < velikost; i++ {
-		povprecje += float64(student.ocene[i])
+		povprecje += float64(student.Ocene[i])
 	}
 
 	povprecje /= float64(velikost)
@@ -45,7 +45,7 @@ func povprecje(studenti map[string]Student, vpisnaStevilka string) float64 {
 func IzpisRedovalnice(studenti map[string]Student) {
 	fmt.Println("REDOVALNICA:")
 	for vpisna, student := range studenti {
-		fmt.Printf("%s - %s %s: %v", vpisna, student.ime, student.priimek, student.ocene)
+		fmt.Printf("%s - %s %s: %v", vpisna, student.Ime, student.Priimek, student.Ocene)
 		fmt.Println()
 	}
 }
@@ -53,7 +53,7 @@ func IzpisRedovalnice(studenti map[string]Student) {
 func IzpisiKoncniUspeh(studenti map[string]Student) {
 	for vpisna, student := range studenti {
 		povprecnaOcena := povprecje(studenti, vpisna)
-		fmt.Printf("%s %s: povprečna ocena: %f -> ", student.ime, student.priimek, povprecnaOcena)
+		fmt.Printf("%s %s: povprečna ocena: %f -> ", student.Ime, student.Priimek, povprecnaOcena)
 		if povprecnaOcena >= 9 {
 			fmt.Println("Odličen študent!")
 		} else if povprecnaOcena < 6 {
