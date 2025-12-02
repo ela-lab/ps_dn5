@@ -15,10 +15,6 @@ func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int) {
 		fmt.Println("Študent s to vpisno številko ne obstaja")
 		return
 	}
-	if ocena < 0 || ocena > 10 {
-		fmt.Println("Neveljavna ocena. Ocena mora biti med 0 in 10.")
-		return
-	}
 	student.Ocene = append(student.Ocene, ocena)
 	studenti[vpisnaStevilka] = student
 }
@@ -27,9 +23,6 @@ func povprecje(studenti map[string]Student, vpisnaStevilka string) float64 {
 	student, ok := studenti[vpisnaStevilka]
 	if !ok {
 		return -1.0
-	}
-	if len(student.Ocene) < 6 {
-		return 0.0
 	}
 	var povprecje float64 = 0
 	var velikost int = len(student.Ocene)
